@@ -169,7 +169,26 @@
     function goToMessage() {
       window.location.href = "message.html";  // Navigate to new page
     }
+  window.addEventListener("load", function () {
+    const music = document.getElementById("bgMusic");
+
+    // Try to autoplay immediately
+    music.play().catch(() => {
+      // If autoplay is blocked, play on first interaction
+      const unlockAudio = () => {
+        music.play();
+        document.removeEventListener("click", unlockAudio);
+        document.removeEventListener("touchstart", unlockAudio);
+      };
+      document.addEventListener("click", unlockAudio);
+      document.addEventListener("touchstart", unlockAudio);
+    });
+  });
   </script>
+<audio id="bgMusic" autoplay loop>
+  <source src="1.mpeg" type="audio/mpeg" />
+  Your browser does not support the audio element.
+</audio>
 
 </body>
 </html>
