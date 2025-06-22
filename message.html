@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Secret Message</title>
+  <style>
+    body {
+      background: #fff8f0;
+      height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .message-card {
+      background: #ffe6f0;
+      padding: 30px 40px;
+      border-radius: 20px;
+      border: 2px solid #ffb6c1;
+      box-shadow: 0 0 20px #ffb6c1;
+      text-align: center;
+      width: 60%;
+      max-width: 400px;
+    }
+
+    .message-card h1 {
+      color: #d6336c;
+    }
+
+    .message-card p {
+      color: #5c5c5c;
+      font-size: 1.2rem;
+    }
+
+    .btn {
+      background-color: #ffb6c1;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      margin-top: 20px;
+    }
+
+    .btn:hover {
+      background-color: #ff80a0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="message-card">
+    <h1>💖 Your Secret Admirer</h1>
+    <p>You're amazing and deserve all the love and joy in the world. Enjoy your special day to the fullest! 🌸</p>
+    <button class="btn" onclick="goBack()">Go Back</button>
+  </div>
+
+  <script>
+    function goBack() {
+      window.history.back();  // Navigate back to the main page
+    }
+  </script>
+
+</body>
+</html>
