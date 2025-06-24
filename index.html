@@ -185,13 +185,20 @@
     });
   });
   </script>
-<audio id="bgMusic" autoplay loop>
+<audio id="bgMusic" loop>
   <source src="1.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
-  <script>
-const audio = document.getElementById('myAudio');
-  audio.volume = 0.6; // 60% volume
-    </script>
+    <div id="tapNote" style="position: fixed; top: 10px; width: 100%; text-align: center; color: #ff69b4;">
+  🎵 Tap anywhere to start music!
+</div>
+<script>
+  function enableMusic() {
+    music.play();
+    document.getElementById("tapNote").style.display = "none";
+    document.removeEventListener("click", enableMusic);
+    document.removeEventListener("touchstart", enableMusic);
+  }
+</script>
 </body>
 </html>
