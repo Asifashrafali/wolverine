@@ -13,28 +13,30 @@
 
     body {
       background: #fff0f5;
-      height: 100vh;
-      overflow: hidden;
+      min-height: 100vh;
       font-family: 'Segoe UI', sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
       position: relative;
+      overflow: hidden;
+      padding: 2rem;
     }
 
-    /* Glowing Card */
     .card {
       position: relative;
       background: #ffe6f0;
       border: 2px solid #ffb6c1;
-      box-shadow: 0 0 20px #ffb6c1, 0 0 40px #ffc0cb;
-      border-radius: 20px;
-      padding: 40px 30px;
+      box-shadow: 0 0 1.25rem #ffb6c1, 0 0 2rem #ffc0cb;
+      border-radius: 1.25rem;
+      padding: 2rem;
       text-align: center;
-      max-width: 400px;
+      max-width: 30vw;
+      width: 100%;
       z-index: 1;
       opacity: 0;
-      transform: scale(0.95);
+      transform: scale(0.5);
       transition: opacity 1.5s ease 0.5s, transform 1.5s ease 0.5s;
     }
 
@@ -45,28 +47,25 @@
 
     .card h1 {
       color: #d6336c;
-      font-size: 2rem;
-      margin-bottom: 10px;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
     }
 
     .card p {
       color: #5c5c5c;
-      font-size: 1.1rem;
+      font-size: 1rem;
     }
 
-    /* Flowers */
+    /* Flower Images */
     .flower {
-      width: 350px;
+      width: 80vw;
+      max-width: 400px;
       position: absolute;
       top: 50%;
-      transform: translate(-50%, -50%);
+      transform: translateY(-50%);
       transition: all 2s ease;
       z-index: 2;
       cursor: pointer;
-    }
-
-    .flower:hover {
-      transform: scale(1.1) rotate(5deg);
     }
 
     .flower-left {
@@ -78,20 +77,22 @@
     }
 
     .flower-left.move {
-      left: -5%;
-      transform: translateY(-50%) scale(1);
+      left: 5%;
     }
 
     .flower-right.move {
-      left: 70%;
-      transform: translateY(-50%) scale(1);
+      left: 66%;
     }
 
-    /* Optional floating petals */
+    .flower:hover {
+      transform: translateY(-50%) scale(1.1) rotate(5deg);
+    }
+
+    /* Petals */
     .petal {
       position: absolute;
-      width: 15px;
-      height: 15px;
+      width: 1rem;
+      height: 1rem;
       background: pink;
       border-radius: 50%;
       opacity: 0.4;
@@ -105,46 +106,77 @@
       }
       100% {
         top: 100%;
-        transform: translateX(50px);
+        transform: translateX(3rem);
         opacity: 0;
       }
     }
 
-    /* Button style */
+    /* Button */
     .btn {
-  background-color: #ffb6c1;
-  color: white;
-  padding: 12px 25px;
-  border: 2px solid #ff69b4;  /* 💡 Added border here */
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.3s ease;
-  margin-top: 25px;
-}
-
+      background-color: #ffb6c1;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: 2px solid #ff69b4;
+      border-radius: 0.6rem;
+      cursor: pointer;
+      transition: 0.3s ease;
+      margin-top: 1.5rem;
+      font-size: 1rem;
+    }
 
     .btn:hover {
-  background-color: #ff80a0;
-  border-color: #ff1493; /* deeper pink on hover */
-  box-shadow: 0 0 8px #ffc0cb;
-}
+      background-color: #ff80a0;
+      border-color: #ff1493;
+      box-shadow: 0 0 0.5rem #ffc0cb;
+    }
 
+    #tapNote {
+      position: fixed;
+      top: 0.5rem;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: #ff69b4;
+      font-size: 0.9rem;
+      padding: 0.25rem;
+    }
+
+    /* MEDIA QUERIES FOR SMALLER DEVICES */
+    @media (max-width: 600px) {
+      .card h1 {
+        font-size: 1.4rem;
+      }
+
+      .card p {
+        font-size: 0.9rem;
+      }
+
+      .flower {
+        width: 35vw;
+        max-width: 150px;
+      }
+
+      .btn {
+        font-size: 0.9rem;
+        padding: 0.6rem 1.2rem;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- 🌸 Flowers -->
+  <!-- Flowers -->
   <img src="2.png" class="flower flower-left" id="leftFlower" alt="flower" />
-  <img src="2.png" class="flower flower-right" id="rightFlower" alt="flower" />
+  <img src="3.png" class="flower flower-right" id="rightFlower" alt="flower" />
 
-  <!-- 🎀 Message Card -->
+  <!-- Card -->
   <div class="card" id="wishCard">
     <h1>🎉 Happy Birthday, Beautiful Soul!</h1>
     <p>May your day bloom like spring and glow like stardust. You are cherished beyond words. 🌸</p>
     <button class="btn" onclick="goToMessage()">From: A Friend 💌</button>
   </div>
 
-  <!-- 🌸 Optional Petals -->
+  <!-- Falling Petals -->
   <script>
     for (let i = 0; i < 20; i++) {
       const petal = document.createElement('div');
@@ -156,7 +188,7 @@
     }
   </script>
 
-  <!-- ✨ Animation Trigger -->
+  <!-- Animation + Music -->
   <script>
     window.onload = () => {
       setTimeout(() => {
@@ -167,38 +199,31 @@
     };
 
     function goToMessage() {
-      window.location.href = "message.html";  // Navigate to new page
+      window.location.href = "message.html";
     }
-  window.addEventListener("load", function () {
-    const music = document.getElementById("bgMusic");
 
-    // Try to autoplay immediately
-    music.play().catch(() => {
-      // If autoplay is blocked, play on first interaction
-      const unlockAudio = () => {
-        music.play();
-        document.removeEventListener("click", unlockAudio);
-        document.removeEventListener("touchstart", unlockAudio);
-      };
-      document.addEventListener("click", unlockAudio);
-      document.addEventListener("touchstart", unlockAudio);
+    // Handle Autoplay
+    window.addEventListener("load", function () {
+      const music = document.getElementById("bgMusic");
+      music.play().catch(() => {
+        const unlockAudio = () => {
+          music.play();
+          document.removeEventListener("click", unlockAudio);
+          document.removeEventListener("touchstart", unlockAudio);
+          document.getElementById("tapNote").style.display = "none";
+        };
+        document.addEventListener("click", unlockAudio);
+        document.addEventListener("touchstart", unlockAudio);
+      });
     });
-  });
   </script>
-<audio id="bgMusic" loop>
-  <source src="1.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
-    <div id="tapNote" style="position: fixed; top: 10px; width: 100%; text-align: center; color: #ff69b4;">
-  💮 Tap anywhere to start music!
-</div>
-<script>
-  function enableMusic() {
-    music.play();
-    document.getElementById("tapNote").style.display = "none";
-    document.removeEventListener("click", enableMusic);
-    document.removeEventListener("touchstart", enableMusic);
-  }
-</script>
+
+  <audio id="bgMusic" loop>
+    <source src="1.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div id="tapNote">💮 Tap anywhere to start music!</div>
+
 </body>
 </html>
